@@ -1,0 +1,19 @@
+C:\Users\papip>python -c "import boto3; s3 = boto3.client('s3', region_name='us-east-1'); s3.create_bucket(Bucket='bucketbucketlewislewis'); print('Bucket bucketbucketlewislewis created successfully!')"
+python create_bucket.py
+C:\Users\papip>aws s3api list-buckets
+
+python -c "import boto3; s3 = boto3.client('s3'); bucket_name = 'bucketbucketlewislewis'; file_name = 'myfile.txt'; f = open(file_name, 'w'); f.write('Hello S3'); f.close(); s3.upload_file(file_name, bucket_name, file_name); print('File ' + file_name + ' uploaded successfully!')"
+python upload_file.py
+aws s3 ls s3://bucketbucketlewislewis/
+
+python -c "import boto3; s3 = boto3.client('s3'); s3.download_file('bucketbucketlewislewis', 'myfile.txt', 'downloaded-file.txt'); print('File myfile.txt downloaded successfully as downloaded-file.txt!')"
+C:\Users\papip>type downloaded-file.txt
+
+python -c "import boto3; s3 = boto3.client('s3'); s3.delete_object(Bucket='bucketbucketlewislewis', Key='myfile.txt'); print('File myfile.txt deleted successfully!')"
+python -c "import boto3; s3 = boto3.client('s3'); response = s3.list_objects_v2(Bucket='bucketbucketlewislewis'); print(response.get('Contents', []))"
+
+python -c "import boto3; s3 = boto3.client('s3'); s3.put_bucket_versioning(Bucket='bucketbucketlewislewis', VersioningConfiguration={'Status': 'Enabled'}); print('Versioning enabled for bucket bucketbucketlewislewis!')"
+python -c "import boto3; s3 = boto3.client('s3'); versioning = s3.get_bucket_versioning(Bucket='bucketbucketlewislewis'); print(versioning)"
+
+python -c "import boto3; s3 = boto3.client('s3'); s3.delete_bucket(Bucket='bucketbucketlewislewis'); print(f'Bucket bucketbucketlewislewis deleted successfully!')"
+aws s3api list-buckets
